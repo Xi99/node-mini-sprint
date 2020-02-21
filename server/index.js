@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 //headers to allows CORS requests
 const headers = {
@@ -39,14 +40,50 @@ const handleRequest = function(req, res) {
     res.end();
   }
 
-  // TODO: GET ONE
-  if ((req.url == '/quote/' || req.url == '/quote') && req.method == "FILL ME IN") {
-    //YOUR CODE HERE
+//  // var http = require('http');
+// var fs = require('fs');
 
-  }
-  // TODO: POST/CREATE
-  else if ((req.url == 'FILL ME IN' || req.url == 'FILL ME IN') && req.method == "FILL ME IN") {
+// var server = http.createServer(function (req, res) {
+
+//     if (req.method === "GET") {
+//         res.writeHead(200, { "Content-Type": "text/html" });
+//         fs.createReadStream("./public/form.html", "UTF-8").pipe(res);
+//     } else if (req.method === "POST") {
+    
+//         var body = "";
+//         req.on("data", function (chunk) {
+//             body += chunk;
+//         });
+
+//         req.on("end", function(){
+//             res.writeHead(200, { "Content-Type": "text/html" });
+//             res.end(body);
+//         });
+//     }
+
+// }).listen(3000);
+
+  // TODO: GET ONE
+  if ((req.url == '/quote/' || req.url == '/quote') && req.method == "GET") {
     //YOUR CODE HERE
+    var data = fs.readFileSync('../client/index.html','utf8');
+    console.log(data);
+    res.writeHead(301, { "Content-Type": "text/html" });
+    fs.createReadStream("../client/index.html", "UTF-8").pipe(res);
+  }
+
+  // TODO: POST/CREATE
+  else if ((req.url == '/quote/' || req.url == `/quote`) && req.method == "POST") {
+    //YOUR CODE HERE
+    var body = "";
+    req.on("data", function (chunk) {
+        body += chunk;
+    });
+
+    req.on("end", function() {
+        res.writeHead(200);
+        res.end(body);
+    });
   }
 
 //CATCH ALL ROUTE
