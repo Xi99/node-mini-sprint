@@ -12,7 +12,6 @@ $(document).ready(function() {
   });
 
   function getQuote(successCB, errorCB = null) {
-
     //YOUR CODE HERE, Add a GET request
     $.ajax({
       url: `http://localhost:${PORT}/quote`,
@@ -20,7 +19,7 @@ $(document).ready(function() {
       data: { order: '-createdAt' },
       contentType: 'application/json',
       success: successCB || function (data) {
-        console.log('Random Quote Generator: Message sent');
+        console.log('Random Quote Generator:  Quote sent');
       },
       error: errorCB || function(error) {
         console.error('Random Quote Generator:  Failed to fetch messages', error);
@@ -28,11 +27,22 @@ $(document).ready(function() {
     });
   }
 
-  function addQuote(quote){
-    
+  function addQuote(quote, successCB, errorCB = null) {
     //YOUR CODE HERE, Add a POST request
-
+    $.ajax({
+      url: `http://localhost:${port}/quote`,
+      type: 'POST',
+      data: JSON.stringify(quote),
+      contentType: 'application/json',
+      success: successCB || function (data) {
+        console.log('Random Quote Generator: Quote sent');
+      },
+      error: errorCB || function(error) {
+        console.error('Random Quote Generator: Failed to send quotes', data);
+      }  
+    });
   }
+
 });
 
 
