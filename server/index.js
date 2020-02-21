@@ -12,11 +12,11 @@ const port = 3000;
 
 // TODO: Fill with strings of your favorite quotes :)
 const quotes = [
-  'one',
-  'two',
-  'three',
-  'four',
-  'five'
+  'There is no secret ingredient',
+  "Well, the first days are the hardest days, don't you worry anymore!",
+  'Wherever you are, that is where I want to be.',
+  'As you wish!',
+  'Give me a high five'
 ];
 
 //Utility Function to return a random integer
