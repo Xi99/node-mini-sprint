@@ -10,6 +10,7 @@ const headers = {
 };
 
 const port = 3000;
+// const port = 8080;
 
 // TODO: Fill with strings of your favorite quotes :)
 const quotes = [
@@ -17,7 +18,8 @@ const quotes = [
   "Well, the first days are the hardest days, don't you worry anymore!",
   'Wherever you are, that is where I want to be.',
   'As you wish!',
-  'Give me a high five'
+  'Give me a high five',
+  'We are winners!!!'
 ];
 
 //Utility Function to return a random integer
@@ -40,36 +42,24 @@ const handleRequest = function(req, res) {
     res.end();
   }
 
-//  // var http = require('http');
-// var fs = require('fs');
-
-// var server = http.createServer(function (req, res) {
-
-//     if (req.method === "GET") {
-//         res.writeHead(200, { "Content-Type": "text/html" });
-//         fs.createReadStream("./public/form.html", "UTF-8").pipe(res);
-//     } else if (req.method === "POST") {
-    
-//         var body = "";
-//         req.on("data", function (chunk) {
-//             body += chunk;
-//         });
-
-//         req.on("end", function(){
-//             res.writeHead(200, { "Content-Type": "text/html" });
-//             res.end(body);
-//         });
-//     }
-
 // }).listen(3000);
 
   // TODO: GET ONE
   if ((req.url == '/quote/' || req.url == '/quote') && req.method == "GET") {
     //YOUR CODE HERE
-    var data = fs.readFileSync('../client/index.html','utf8');
-    console.log(data);
-    res.writeHead(301, { "Content-Type": "text/html" });
-    fs.createReadStream("../client/index.html", "UTF-8").pipe(res);
+    // var data = fs.readFileSync('../client/index.html','utf8');
+    let random = getRandomInt(0, quotes.length);
+
+    let currQuote = quotes[random]
+    // var quote = "Be excellent to each other";
+    res.writeHead(200);
+    res.end(currQuote);
+    // res.end(quote);
+
+    // res.writeHead(301, { "Content-Type": "text/html" });
+    // fs.createReadStream("../client/index.html", "UTF-8").pipe(res);
+
+    
   }
 
   // TODO: POST/CREATE
