@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
-  const PORT = 3000;
+  const port = 3000;
 // get a quote from the server when the page loads and add it to the dom
   getQuote();
+  // let currQuote = getQuote();
+  // append to #response
+  console.log(currQuotes)
+  // $('#quote-place').append(currQuote);
 
 // when the user enters data and clicks submit, post the quote to the server
   $('#submit').click((e) => {
@@ -14,7 +18,7 @@ $(document).ready(function() {
   function getQuote(successCB, errorCB = null) {
     //YOUR CODE HERE, Add a GET request
     $.ajax({
-      url: `http://localhost:${PORT}/quote`,
+      url: `http://localhost:${port}/quote`,
       type: 'GET',
       data: { order: '-createdAt' },
       contentType: 'application/json',
@@ -37,7 +41,7 @@ $(document).ready(function() {
       success: successCB || function (data) {
         console.log('Random Quote Generator: Quote sent');
       },
-      error: errorCB || function(error) {
+      error: errorCB || function(error, data) {
         console.error('Random Quote Generator: Failed to send quotes', data);
       }  
     });
