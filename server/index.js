@@ -52,7 +52,7 @@ const handleRequest = function(req, res) {
 
     let currQuote = quotes[random]
     // var quote = "Be excellent to each other";
-    res.writeHead(200);
+    res.writeHead(200, {...headers, "Content-Type": "text/html"});
     res.end(currQuote);
     // res.end(quote);
 
@@ -71,8 +71,8 @@ const handleRequest = function(req, res) {
     });
 
     req.on("end", function() {
-        res.writeHead(200);
-        console.log("in the end")
+        res.writeHead(200, {...headers, "Content-Type": "text/html"});
+        console.log("in the Post Server")
         res.end(body);
     });
   }
