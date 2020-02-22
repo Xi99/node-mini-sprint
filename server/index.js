@@ -72,6 +72,7 @@ const handleRequest = function(req, res) {
 
     req.on("end", function() {
         res.writeHead(200);
+        console.log("in the end")
         res.end(body);
     });
   }
